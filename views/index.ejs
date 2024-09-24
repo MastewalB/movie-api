@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('./partials/head'); %>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    .movie-container {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      padding: 20px;
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .movie-container img {
+      max-width: 100%;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .movie-details {
+      text-align: left;
+    }
+
+    .movie-details p {
+      margin: 10px 0;
+      color: #555;
+    }
+
+    .movie-details p strong {
+      color: #333;
+    }
+
+    .button-container {
+      margin: 20px 0;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .no-data {
+      color: red;
+      font-size: 18px;
+    }
+
+    .error-message {
+      color: white;
+      background-color: #ff4d4d;
+      padding: 10px;
+      border-radius: 5px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+  </style>
+</head>
+<body class="container">
+
+<header>
+  <%- include('./partials/header'); %>
+</header>
+
+<main>
+  <div class="jumbotron">
+    <h1>Enter a movie title</h1>
+    <form action="/" method="POST">
+      <input type="text" name="movieName" placeholder="Enter a movie title" required>
+      <button type="submit">Submit</button>
+    </form>
+
+    <% if (error) { %>
+      <div class="error-message">
+        <p><%= error %></p>
+      </div>
+    <% } %>
+
+    <div class="movie-container">
+      <% if (movieDetails) { %>
+        <img src="<%= movieDetails.poster %>" alt="Movie Poster" />
+        <div class="movie-details">
+          <p><strong>Title:</strong> <%= movieDetails.title %></p>
+          <p><strong>Year:</strong> <%= movieDetails.year %></p>
+          <p><strong>Rated:</strong> <%= movieDetails.rate %></p>
+          <p><strong>Release Date:</strong> <%= movieDetails.releaseDate %></p>
+          <p><strong>Duration:</strong> <%= movieDetails.duration %></p>
+          <p><strong>Genre:</strong> <%= movieDetails.genre %></p>
+          <p><strong>Director:</strong> <%= movieDetails.director %></p>
+          <p><strong>Writer:</strong> <%= movieDetails.writer %></p>
+          <p><strong>Actors:</strong> <%= movieDetails.actors %></p>
+          <p><strong>Plot:</strong> <%= movieDetails.plot %></p>
+          <p><strong>Language:</strong> <%= movieDetails.language %></p>
+          <p><strong>Country:</strong> <%= movieDetails.country %></p>
+          <p><strong>IMDb Rating:</strong> <%= movieDetails.imdbRating %></p>
+          <p><strong>IMDb Votes:</strong> <%= movieDetails.imdbVotes %></p>
+        </div>
+      <% } %>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <%- include('./partials/footer'); %>
+</footer>
+
+</body>
+</html>
